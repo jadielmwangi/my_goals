@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 // here  we have imported the FormsModule and then added it to our imports array
 import { FormsModule } from '@angular/forms';
+//  imported the HttpClientModule and added it to the imports array
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +28,10 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+
+    // We are going to use this module to access a random quote API and display the quotes on our app
+    FormsModule,
+    HttpClientModule
 
 
   ],

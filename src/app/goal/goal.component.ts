@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GoalService } from '../goal-service/goal.service';
 
 import { Goal } from '../goal';
 
-// import { GoalService } from '../goal-service/goal.service';
-// import { AlertService } from '../alert-service/alert.service';
+
+// Let's inject services it into our goal component.
+import { GoalService } from '../goal-service/goal.service';
+import { AlertService } from '../alert-service/alert.service';
 
 @Component({
   selector: 'app-goal',
@@ -22,18 +23,12 @@ export class GoalComponent implements OnInit {
   //   new Goal(6,'Plot my world domination plan','Cause I am an evil overlord',new Date(2030,3,14)),
   //  ];
  
-
+  //  creates a property goals and assigned it our Goals type
   goals:Goal[];
 
-
-  // alertService:AlertService;
-
-
-  // constructor(goalService:GoalService) {
-  //   this.goals = goalService.getGoals()
-  // }
-
-
+  
+  // created a property alertService and assigned it our AlertService type
+  alertService:AlertService;
 
  
 
@@ -49,7 +44,7 @@ export class GoalComponent implements OnInit {
       if (toDelete){
         this.goals.splice(index,1)
 
-        // this.alertService.alertMe("The goal has been deleted")
+        this.alertService.alertMe("The goal has been deleted")
       }
     }
   }
@@ -62,17 +57,19 @@ export class GoalComponent implements OnInit {
     this.goals.push(goal)
 
   }
-
-
   
 
-
-  constructor(goalService:GoalService) {
+  // To make the service available in the component, we have added it to the constructor function
+  constructor(goalService:GoalService, alertService:AlertService ) {
 
     this.goals = goalService.getGoals()
 
-   }
+    // added code that uses the alertMe() method from the alert service
+    this.alertService = alertService;
 
+
+   }
+ 
   ngOnInit(): void {
   }
 
