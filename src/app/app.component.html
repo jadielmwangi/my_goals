@@ -1,2 +1,8 @@
+<!-- add navbar selector to our root template file. -->
 
-<app-goal></app-goal>
+<app-navbar></app-navbar>
+
+
+<!-- <app-goal></app-goal> -->
+<router-outlet></router-outlet>
+<!-- We have replaced the <app-goal> selector with the <router-outlet> selector because the router will be responsible for views from now on. If we keep the <app-goal> selector, our app will display the goal component and its child components only, which beats our purpose for creating routes.  -->

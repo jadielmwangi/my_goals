@@ -1,4 +1,7 @@
 <div class="container">
+  <ng-progress></ng-progress>
+  <!-- We have added tags in the template placed at the top where we want to see our progress bar -->
+
   <h1>My Goals</h1>
   <hr>
 
@@ -28,4 +31,18 @@
   </div>
 
   <p *ngIf='goals.length > 5'>You have too many goals</p>
+
+
+
+  <!-- Let's display this quote on our app. -->
+
+  <div class="row">
+    <blockquote class="blockquote text-center">
+      <p class="mb-0">{{quote.quote}}</p>
+      <footer class="blockquote-footer"><cite>{{quote.author}}</cite></footer>
+    </blockquote>
+  </div>
+  <!-- We have displayed our quote in a bootstrap blockquote, -->
+
+  
 </div>

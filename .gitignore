@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+# To hide this file, let's go to our .gitignore file and add the file there.
+environment.ts

@@ -6,6 +6,15 @@ import { Goal } from '../goal';
 // Let's inject services it into our goal component.
 import { GoalService } from '../goal-service/goal.service';
 import { AlertService } from '../alert-service/alert.service';
+import { QuoteRequestService } from '../quote-http/quote-request.service';
+
+
+
+// We can now make a HTTP request to the API in our goal component
+import { HttpClient } from '@angular/common/http';
+
+import { Quote } from '../quote-class/quote';
+
 
 @Component({
   selector: 'app-goal',
@@ -29,6 +38,11 @@ export class GoalComponent implements OnInit {
   
   // created a property alertService and assigned it our AlertService type
   alertService:AlertService;
+
+    // created a property quote  and assigned it our Quote type
+
+  quote:Quote;
+
 
  
 
@@ -60,18 +74,69 @@ export class GoalComponent implements OnInit {
   
 
   // To make the service available in the component, we have added it to the constructor function
-  constructor(goalService:GoalService, alertService:AlertService ) {
+  // we have created a property http which is of the type HttpClient
+  
+  
+  
+  // constructor(goalService:GoalService, alertService:AlertService, private http:HttpClient ) {
 
+  //   this.goals = goalService.getGoals()
+
+  //   // added code that uses the alertMe() method from the alert service
+  //   this.alertService = alertService;
+
+
+  //  }
+
+  constructor(goalService:GoalService, alertService:AlertService, private quoteService:QuoteRequestService) {
+   
     this.goals = goalService.getGoals()
-
-    // added code that uses the alertMe() method from the alert service
     this.alertService = alertService;
-
-
-   }
- 
-  ngOnInit(): void {
   }
+
+
+
+
+
+
+
+
+  // ngOnInit(): void {
+  //   // Before we make the request, we need to inform Angular the kind of response we'll receive from the API by defining an interface which we have named ApiResponse.
+  //   interface ApiResponse{
+  //     author:string;
+  //     quote:string;
+  //     // Inside the interface, we have specified that we'll be expecting a property author and quote which are both of the type string.
+  //   }
+
+  //   // made a request to the API with the get function passing in the API URL accompanied by the interface for the data we expect to receive
+  //   this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
+  //     // Succesful API request
+  //     // We have then called the subscribe function which has a data function that is executed when the request is successful. We then create a new quote instance with the properties we get from the response
+  //     this.quote = new Quote(data.author, data.quote)
+  //     // We then create a new quote instance with the properties we get from the response.
+
+  //   },
+  //   // if we make a bad request to the API and we get no response, or even worse, the servers are down and not working?    
+  //   err=>{
+  //     this.quote = new Quote("Winston Churchill","Never never give up!")
+  //     console.log("An error occurred")
+  //     // added the err function and specified the quote instance that should be created when we get no response and the error message to be logged in the console
+    
+    
+  //   })
+    
+  // }
+
+  // using HTTP requests using Promises, we have the following:
+
+  ngOnInit() {
+
+    this.quoteService.quoteRequest()
+    this.quote = this.quoteService.quote
+    // Inside the ngOnInit lifecycle hook, we have called the quoteRequest() method from the service and created a quote instance with the promise object we will receive from the service.
+  }
+
 
 
 }

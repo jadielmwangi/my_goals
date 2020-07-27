@@ -15,6 +15,15 @@ import { StrikethroughDirective } from './strikethrough.directive';
 import { DateCountPipe } from './date-count.pipe';
 import { GoalFormComponent } from './goal-form/goal-form.component';
 
+
+    // We have imported the normal loader and the loader that listens for our HTTP requests from the app and automatically displays progress according to our apps requests
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
+import { AboutComponent } from './about/about.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,15 +32,22 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
     GoalMwasComponent,
     StrikethroughDirective,
     DateCountPipe,
-    GoalFormComponent
+    GoalFormComponent,
+    AboutComponent,
+    NavbarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
 
-    // We are going to use this module to access a random quote API and display the quotes on our app
     FormsModule,
-    HttpClientModule
+        // We are going to use this module to access a random quote API and display the quotes on our app
+    HttpClientModule,
+
+    NgProgressModule.forRoot(),
+    NgProgressHttpClientModule
+
 
 
   ],
